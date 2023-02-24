@@ -27,7 +27,7 @@
     "styled-components": "^5.3.6",
     "uint8arrays": "^4.0.2",
     "web-vitals": "^2.1.4",
-    "webnative": "^0.35.1"
+    "webnative": "^0.36.3"
   },
   "scripts": {
     "dev": "GENERATE_SOURCEMAP=false PORT=4000 react-app-rewired start",
