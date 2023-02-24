@@ -1,11 +1,14 @@
 const Disconnect = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" fill="none">
+  <svg
+    width="15"
+    height="25"
+    viewBox="0 0 15 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="m15 13 4-4m0 0-4-4m4 4H5m6 4v1a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1"
+      d="M4 2.5H11C12.1046 2.5 13 3.39543 13 4.5V20.5C13 21.6046 12.1046 22.5 11 22.5H4C2.89543 22.5 2 21.6046 2 20.5V15.5H0V20.5C0 22.7091 1.79086 24.5 4 24.5H11C13.2091 24.5 15 22.7091 15 20.5V4.5C15 2.29086 13.2091 0.5 11 0.5H4C1.79086 0.5 0 2.29086 0 4.5V9.5H2V4.5C2 3.39543 2.89543 2.5 4 2.5Z"
+      fill="#16181B"
     />
   </svg>
 );

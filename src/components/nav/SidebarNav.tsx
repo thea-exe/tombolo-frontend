@@ -1,47 +1,47 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useLocation, useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import { getRecoil } from "recoil-nexus";
 
-import { sessionStore } from '../../stores'
-import About from '../icons/About'
-import AlphaTag from './AlphaTag'
-import BrandLogo from '../icons/BrandLogo'
-import BrandWordmark from '../icons/BrandWordmark'
-import Disconnect from '../icons/Disconnect'
-import Home from '../icons/Home'
-import NavItem from './NavItem'
-import PhotoGallery from '../icons/PhotoGallery'
-import Settings from '../icons/Settings'
+import { sessionStore } from "../../stores";
+import AlphaTag from "./AlphaTag";
+import BrandLogo from "../icons/BrandLogo";
+import BrandWordmark from "../icons/BrandWordmark";
+import Disconnect from "../icons/Disconnect";
+import Dashboard from "../icons/Dashboard";
+import NavItem from "./NavItem";
+import DealPortal from "../icons/DealPortal";
+import Account from "../icons/Account";
+import Support from "../icons/Support";
 
 const navItemsUpper = [
   {
-    label: 'Home',
-    href: '/',
-    icon: Home
+    label: "Dashboard",
+    href: "/",
+    icon: Dashboard,
   },
   {
-    label: 'Photo Gallery Demo',
-    href: '/gallery/',
-    icon: PhotoGallery
+    label: "Deal Portal",
+    href: "/gallery/",
+    icon: DealPortal,
   },
   {
-    label: 'Account Settings',
-    href: '/settings/',
-    icon: Settings
-  }
-]
+    label: "Account",
+    href: "/settings/",
+    icon: Account,
+  },
+  {
+    label: "Support",
+    href: "/settings/",
+    icon: Support,
+  },
+];
 
 const navItemsLower = [
   {
-    label: "About This Template",
-    href: "/about/",
-    icon: About,
-  },
-  {
-    label: "Disconnect",
+    label: "Log Out",
     callback: async () => {
-      const session = getRecoil(sessionStore)
+      const session = getRecoil(sessionStore);
       await session.session.destroy();
       // Force a hard refresh to ensure everything is disconnected properly
       window.location.href = window.location.origin;
@@ -55,10 +55,10 @@ const SidebarNav = ({ children }: any) => {
   const location = useLocation();
   const navigate = useNavigate();
   const session = useRecoilValue(sessionStore);
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
 
   const handleCloseDrawer = (): void => {
-    setChecked(false)
+    setChecked(false);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,17 +79,19 @@ const SidebarNav = ({ children }: any) => {
         <div className="drawer-content flex flex-col">{children}</div>
         <div
           className={`drawer-side ${
-            location.pathname.match(/register|backup|delegate|recover/) ? "!hidden" : ""
+            location.pathname.match(/register|backup|delegate|recover/)
+              ? "!hidden"
+              : ""
           }`}
         >
           <label
             htmlFor="sidebar-nav"
             className="drawer-overlay !bg-[#262626] !opacity-[.85]"
           />
-          <div className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+          <div className="menu p-4 overflow-y-auto w-70 bg-base-100 text-base-content border-r border-r-black">
             {/* Brand */}
             <div
-              className="flex items-center gap-3 cursor-pointer mb-8"
+              className="flex items-center gap-2 cursor-pointer mb-8"
               onClick={() => {
                 handleCloseDrawer();
                 navigate("/");
@@ -101,7 +103,7 @@ const SidebarNav = ({ children }: any) => {
             </div>
 
             {/* Upper Menu */}
-            <ul>
+            <ul className="mt-auto ">
               {navItemsUpper.map((item, key) => (
                 <NavItem
                   handleCloseDrawer={handleCloseDrawer}
@@ -128,6 +130,6 @@ const SidebarNav = ({ children }: any) => {
   }
 
   return children;
-}
+};
 
 export default SidebarNav;
