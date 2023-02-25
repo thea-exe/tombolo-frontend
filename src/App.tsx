@@ -31,7 +31,7 @@ const AppRenderer = () => {
   return (
     <>
       <SidebarNav>
-        <Header />
+        {/* <Header /> */}
         <div className="">
           <Routes>
             <Route path="/backup" element={<Backup />} />
