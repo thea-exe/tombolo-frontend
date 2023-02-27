@@ -206,8 +206,6 @@ const Authed = () => {
   return (
     <>
       {isClicked ? (
-        <NoDeal />
-      ) : (
         <>
           <div className="relative flex h-36">
             <div className="w-full border-r-2 border-r-[#000] p-4">
@@ -452,6 +450,8 @@ const Authed = () => {
             customStyles={customStyles}
           />
         </>
+      ) : (
+        <NoDeal />
       )}
       <Button onClick={handleClick} /> {/* TAKE BUTTON OUT */}
     </>

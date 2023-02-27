@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-import { appName } from '../../../lib/app-info'
-import type { ConnectView } from '../../../lib/views'
+import { appName } from "../../../lib/app-info";
+import type { ConnectView } from "../../../lib/views";
 
 type Props = {
-  changeView: (view: ConnectView ) => void;
-}
+  changeView: (view: ConnectView) => void;
+};
 
 const Connect = ({ changeView }: Props) => {
   const handleChangeView = () => changeView("open-connected-device");

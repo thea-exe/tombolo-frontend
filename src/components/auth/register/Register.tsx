@@ -11,6 +11,8 @@ import {
 } from "../../../lib/auth/account";
 import FilesystemActivity from "../../common/FilesystemActivity";
 import TomboloBackground from "../../images/TomboloBackground";
+import BrandLogo from "../../icons/BrandLogo";
+import BrandWordmark from "../../icons/BrandWordmark";
 
 const Register = () => {
   const {
@@ -83,7 +85,7 @@ const Register = () => {
   }
 
   return (
-    <div className="relative flex">
+    <div className="fixed h-screen w-full flex">
       <div className="h-full object-cover float-left">
         <TomboloBackground />
       </div>
