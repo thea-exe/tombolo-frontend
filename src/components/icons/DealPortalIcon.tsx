@@ -1,4 +1,4 @@
-const DealPortal = () => (
+const DealPortalIcon = () => (
   <svg
     width="24"
     height="25"
@@ -13,4 +13,4 @@ const DealPortal = () => (
   </svg>
 );
 
-export default DealPortal;
+export default DealPortalIcon;

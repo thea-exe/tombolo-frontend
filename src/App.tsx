@@ -15,7 +15,7 @@ import Backup from "./routes/BackupRoute";
 import Connect from "./routes/ConnectRoute";
 import DelegateAccount from "./routes/DelegateAccountRoute";
 import LinkDevice from "./routes/LinkDeviceRoute";
-import Gallery from "./routes/gallery/GalleryRoute";
+import DealPortalRoute from "./routes/gallery/DealPortalRoute";
 import Recover from "./routes/RecoverRoute";
 import Register from "./routes/RegisterRoute";
 import Settings from "./routes/SettingsRoute";
@@ -36,7 +36,7 @@ const AppRenderer = () => {
           <Routes>
             <Route path="/backup" element={<Backup />} />
             <Route path="/connect" element={<Connect />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/dealportal" element={<DealPortalRoute />} />
             <Route path="/delegate-account" element={<DelegateAccount />} />
             <Route path="/link-device" element={<LinkDevice />} />
             <Route path="/register" element={<Register />} />
@@ -48,7 +48,7 @@ const AppRenderer = () => {
           </Routes>
         </div>
       </SidebarNav>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
@@ -64,7 +64,7 @@ const App = () => {
   useMountEffect();
 
   return (
-    <div data-theme="bg-white" className="App min-h-screen">
+    <div className="App min-h-screen bg-[#F7F7F7]">
       {/* <div data-theme={theme.selectedTheme} className="App min-h-screen"> */}
       <Router>
         <Notifications />

@@ -10,7 +10,7 @@ import BrandWordmark from "../icons/BrandWordmark";
 import Disconnect from "../icons/Disconnect";
 import Dashboard from "../icons/Dashboard";
 import NavItem from "./NavItem";
-import DealPortal from "../icons/DealPortal";
+import DealPortalIcon from "../icons/DealPortalIcon";
 import Account from "../icons/Account";
 import Support from "../icons/Support";
 
@@ -22,8 +22,8 @@ const navItemsUpper = [
   },
   {
     label: "Deal Portal",
-    href: "/gallery/",
-    icon: DealPortal,
+    href: "/dealportal/",
+    icon: DealPortalIcon,
   },
   {
     label: "Account",
@@ -32,7 +32,7 @@ const navItemsUpper = [
   },
   {
     label: "Support",
-    href: "/settings/",
+    href: "",
     icon: Support,
   },
 ];
