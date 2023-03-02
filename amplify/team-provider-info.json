@@ -1,0 +1,23 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-tombolofrontendnew-staging-122356-authRole",
+      "UnauthRoleArn": "arn:aws:iam::288251279596:role/amplify-tombolofrontendnew-staging-122356-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::288251279596:role/amplify-tombolofrontendnew-staging-122356-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-tombolofrontendnew-staging-122356-deployment",
+      "UnauthRoleName": "amplify-tombolofrontendnew-staging-122356-unauthRole",
+      "StackName": "amplify-tombolofrontendnew-staging-122356",
+      "StackId": "arn:aws:cloudformation:us-east-2:288251279596:stack/amplify-tombolofrontendnew-staging-122356/03dec810-b91f-11ed-890c-06ae1b01ac8c",
+      "AmplifyAppId": "d1dblovfvnakpf"
+    },
+    "categories": {
+      "api": {
+        "tombolofrontendnew": {}
+      },
+      "auth": {
+        "tombolofrontendnew6da5dc3d": {}
+      }
+    }
+  }
+}

@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import { Amplify } from "aws-amplify";
+// import '@aws-amplify/ui-react/style.css';
+import awsExports from "./aws-exports";
+Amplify.configure(awsExports);
 
 import init from "./lib/init";
-import { sessionStore, themeStore } from "./stores";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import { sessionStore } from "./stores";
 import SidebarNav from "./components/nav/SidebarNav";
 import FullScreenLoader from "./components/common/FullScreenLoader";
 import Notifications from "./components/notifications/Notifications";
