@@ -7,20 +7,27 @@ import { ChakraProvider } from "@chakra-ui/react";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
+import { Amplify } from "aws-amplify";
+import config from "./aws-exports";
+import "@aws-amplify/ui-react/styles.css";
+import { AmplifyProvider } from "@aws-amplify/ui-react";
+Amplify.configure(config); // aws-exports file contains info about where auth info is located in aws, can access thru react app
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
 root.render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <RecoilNexus />
-      <ChakraProvider>
-        <App />
-      </ChakraProvider>
-    </RecoilRoot>
-  </React.StrictMode>
+  <AmplifyProvider>
+    {/* will provide styling  */}
+    <React.StrictMode>
+      <RecoilRoot>
+        <RecoilNexus />
+        <ChakraProvider>
+          <App />
+        </ChakraProvider>
+      </RecoilRoot>
+    </React.StrictMode>
+  </AmplifyProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

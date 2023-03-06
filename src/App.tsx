@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { Amplify } from "aws-amplify";
-// import '@aws-amplify/ui-react/style.css';
-import awsExports from "./aws-exports";
-Amplify.configure(awsExports);
+import { withAuthenticator } from "@aws-amplify/ui-react";
 
 import init from "./lib/init";
 import { sessionStore } from "./stores";
@@ -76,4 +73,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default withAuthenticator(App);
