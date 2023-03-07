@@ -38,11 +38,11 @@ const AppRenderer = () => {
             <Route path="/dealportal" element={<DealPortalRoute />} />
             <Route path="/delegate-account" element={<DelegateAccount />} />
             <Route path="/link-device" element={<LinkDevice />} />
+            <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/recover" element={<Recover />} />
             <Route path="/about" element={<About />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/" element={<Home />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
