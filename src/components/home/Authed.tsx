@@ -49,6 +49,7 @@ import {
 } from "@chakra-ui/react";
 import NoDeal from "./NoDeal";
 import { View, Authenticator } from "@aws-amplify/ui-react";
+import FullScreenLoader from "../common/FullScreenLoader";
 
 const customStyles = {
   headRow: {
@@ -65,6 +66,7 @@ const customStyles = {
 };
 
 type Deal = {
+  id: string;
   name: string;
   status: string;
   file_size: number;
@@ -72,54 +74,6 @@ type Deal = {
   provider_id: number;
   options: any;
 };
-const columns = [
-  {
-    name: "DEAL NAME",
-    selector: (row: Deal) => row.name,
-    sortable: true,
-    cell: (row: Deal) => row.name,
-  },
-  {
-    name: "STATUS",
-    selector: (row: Deal) => row.status,
-    sortable: true,
-    cell: (row: Deal) => {
-      if (row.status == "Terminated") {
-        return <Badge colorScheme="red">Terminated</Badge>;
-      } else if (row.status == "In Progress") {
-        return <Badge colorScheme="green">In Progress</Badge>;
-      } else if (row.status == "Upload Scheduled") {
-        return <Badge colorScheme="blue">Upload Scheduled</Badge>;
-      } else {
-        return <Badge>Data Prep</Badge>;
-      }
-    },
-  },
-  {
-    name: "FILE SIZE",
-    selector: (row: Deal) => row.file_size,
-    sortable: true,
-    cell: (row: Deal) => row.file_size + " TiB",
-  },
-  {
-    name: "COST-TO-DATE",
-    selector: (row: Deal) => row.cost_to_date,
-    sortable: true,
-    cell: (row: Deal) => "$" + row.cost_to_date,
-  },
-  {
-    name: "PROVIDER ID",
-    selector: (row: Deal) => row.provider_id,
-    sortable: true,
-    cell: (row: Deal) => "#" + row.provider_id,
-  },
-  {
-    name: "",
-    selector: (row: Deal) => row.options,
-    sortable: true,
-    cell: (row: Deal) => row.options,
-  },
-];
 
 const stats = [
   { name: "Data Stored", stat: "123,00TiB" },
@@ -137,6 +91,56 @@ const intialDealState = {
 };
 
 const Authed = () => {
+  const columns = [
+    {
+      name: "DEAL NAME",
+      selector: (row: Deal) => row.name,
+      sortable: true,
+      cell: (row: Deal) => row.name,
+    },
+    {
+      name: "STATUS",
+      selector: (row: Deal) => row.status,
+      sortable: true,
+      cell: (row: Deal) => {
+        if (row.status == "Terminated") {
+          return <Badge colorScheme="red">Terminated</Badge>;
+        } else if (row.status == "In Progress") {
+          return <Badge colorScheme="green">In Progress</Badge>;
+        } else if (row.status == "Upload Scheduled") {
+          return <Badge colorScheme="blue">Upload Scheduled</Badge>;
+        } else {
+          return <Badge>Data Prep</Badge>;
+        }
+      },
+    },
+    {
+      name: "FILE SIZE",
+      selector: (row: Deal) => row.file_size,
+      sortable: true,
+      cell: (row: Deal) => row.file_size + " TiB",
+    },
+    {
+      name: "COST-TO-DATE",
+      selector: (row: Deal) => row.cost_to_date,
+      sortable: true,
+      cell: (row: Deal) => "$" + row.cost_to_date,
+    },
+    {
+      name: "PROVIDER ID",
+      selector: (row: Deal) => row.provider_id,
+      sortable: true,
+      cell: (row: Deal) => "#" + row.provider_id,
+    },
+    {
+      name: "",
+      selector: (row: Deal) => row.options,
+      sortable: true,
+      cell: (row: Deal) => (
+        <button onClick={() => deleteTodo(row)}>delete</button>
+      ),
+    },
+  ];
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isOpenNewDeal,
@@ -145,7 +149,13 @@ const Authed = () => {
   } = useDisclosure();
 
   const [deals, setDeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const [dealData, setDealData] = useState(intialDealState);
+
+  useEffect(() => {
+    fetchDeals();
+  }, []);
 
   async function fetchDeals() {
     try {
@@ -153,15 +163,12 @@ const Authed = () => {
       if ("data" in apiData && apiData.data.listDeals.items) {
         const deals = apiData.data.listDeals.items;
         setDeals(deals);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error(error);
     }
   }
-
-  useEffect(() => {
-    fetchDeals();
-  }, []);
 
   async function createDeal() {
     if (!dealData.name) return; // if no name, give error
@@ -171,17 +178,27 @@ const Authed = () => {
       variables: { input: dealData },
     });
     setDeals([...deals, dealData]);
+    window.location.reload();
     setDealData(intialDealState);
   }
 
   async function deleteTodo({ id }) {
     if (!window.confirm("Do you want to delete this Todo?")) return;
-    const newDealArray = deals.filter((deals) => deals.id !== id); // creates a new variable without the id of deleted object
-    setDeals(newDealArray);
-    await API.graphql({
-      query: mutations.deleteDeal,
-      variables: { input: { id } },
-    });
+    try {
+      await API.graphql({
+        query: mutations.deleteDeal,
+        variables: { input: { id } },
+      });
+      const newDealArray = deals.filter((deals) => deals.id !== id); // creates a new variable without the id of deleted object
+      setDeals(newDealArray);
+    } catch (error) {
+      console.log("Error deleting Todo:", error);
+      // handle the error in a way that makes sense for your application
+    }
+  }
+
+  if (isLoading) {
+    return <FullScreenLoader />;
   }
 
   return (
@@ -487,82 +504,15 @@ const Authed = () => {
               </DrawerContent>
             </Drawer>
           </div>
-
           <DataTable
             columns={columns}
             data={deals}
             customStyles={customStyles}
           />
-          {deals.map((deal) => (
-            <div key={deal.id}>
-              <button onClick={() => deleteTodo(deal)}>delete</button>
-            </div>
-          ))}
         </>
       ) : (
         <>
-          <NoDeal onClick={onOpenNewDeal} />
-          <Modal isOpen={isOpenNewDeal} onClose={onCloseNewDeal}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Modal Title</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <input
-                  onChange={(e) =>
-                    setDealData({ ...dealData, name: e.target.value })
-                  }
-                  placeholder="Deal Name"
-                  value={dealData.name}
-                />
-                <input
-                  onChange={(e) =>
-                    setDealData({ ...dealData, status: e.target.value })
-                  }
-                  placeholder="Deal Status"
-                  value={dealData.status}
-                />
-                <input
-                  onChange={(e) =>
-                    setDealData({
-                      ...dealData,
-                      file_size: parseInt(e.target.value),
-                    })
-                  }
-                  placeholder="File Size"
-                  value={dealData.file_size}
-                />
-                <input
-                  onChange={(e) =>
-                    setDealData({
-                      ...dealData,
-                      cost_to_date: parseInt(e.target.value),
-                    })
-                  }
-                  placeholder="Cost to Date"
-                  value={dealData.cost_to_date}
-                />
-                <input
-                  onChange={(e) =>
-                    setDealData({
-                      ...dealData,
-                      provider_id: e.target.value,
-                    })
-                  }
-                  placeholder="Provider ID"
-                  value={dealData.provider_id}
-                />
-              </ModalBody>
-              <ModalFooter>
-                <Button colorScheme="blue" mr={3} onClick={onCloseNewDeal}>
-                  Close
-                </Button>
-                <Button onClick={createDeal} variant="ghost">
-                  Create Deal
-                </Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
+          <NoDeal />
         </>
       )}
     </>

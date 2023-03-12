@@ -1,21 +1,21 @@
 import { ArrowForwardIcon, Icon } from "@chakra-ui/icons";
-import { Button, HStack } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import React from "react";
 import { SiTwitter, SiMedium, SiInstagram, SiDiscord } from "react-icons/si";
 import { Link } from "react-router-dom";
 
-const NoDeal = ({ onClick }) => {
+const NoDeal = () => {
   return (
     <div className="h-screen flex justify-center content-center">
       <div className="text-xl font-medium mt-auto mb-auto">
         You don&apos;t have any storage deals yet.
         <p className="break-after-colum"></p>
-        <Button
-          onClick={onClick}
+        <Link
           className="text-[#5299E0] underline underline-offset-4"
+          to={"https://share.hsforms.com/1mvZF3awnRJC6ywL2aC8-tQe3p87"}
         >
           Request
-        </Button>{" "}
+        </Link>{" "}
         your first deal or learn more
         <div className="flex">
           about Tombolo
