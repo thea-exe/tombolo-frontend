@@ -63,6 +63,14 @@ const customStyles = {
       fontWeight: 700,
     },
   },
+  rows: {
+    style: {
+      backgroundColor: "white",
+      "&:hover": {
+        backgroundColor: "#f1f1f1",
+      },
+    },
+  },
 };
 
 type Deal = {
@@ -193,7 +201,6 @@ const Authed = () => {
       setDeals(newDealArray);
     } catch (error) {
       console.log("Error deleting Todo:", error);
-      // handle the error in a way that makes sense for your application
     }
   }
 
@@ -243,53 +250,60 @@ const Authed = () => {
               <Modal isOpen={isOpenNewDeal} onClose={onCloseNewDeal}>
                 <ModalOverlay />
                 <ModalContent>
-                  <ModalHeader>Modal Title</ModalHeader>
+                  <ModalHeader>New Deal</ModalHeader>
                   <ModalCloseButton />
                   <ModalBody>
-                    <input
-                      onChange={(e) =>
-                        setDealData({ ...dealData, name: e.target.value })
-                      }
-                      placeholder="Deal Name"
-                      value={dealData.name}
-                    />
-                    <input
-                      onChange={(e) =>
-                        setDealData({ ...dealData, status: e.target.value })
-                      }
-                      placeholder="Deal Status"
-                      value={dealData.status}
-                    />
-                    <input
-                      onChange={(e) =>
-                        setDealData({
-                          ...dealData,
-                          file_size: parseInt(e.target.value),
-                        })
-                      }
-                      placeholder="File Size"
-                      value={dealData.file_size}
-                    />
-                    <input
-                      onChange={(e) =>
-                        setDealData({
-                          ...dealData,
-                          cost_to_date: parseInt(e.target.value),
-                        })
-                      }
-                      placeholder="Cost to Date"
-                      value={dealData.cost_to_date}
-                    />
-                    <input
-                      onChange={(e) =>
-                        setDealData({
-                          ...dealData,
-                          provider_id: e.target.value,
-                        })
-                      }
-                      placeholder="Provider ID"
-                      value={dealData.provider_id}
-                    />
+                    <div className="flex flex-col">
+                      Deal Name:
+                      <input
+                        onChange={(e) =>
+                          setDealData({ ...dealData, name: e.target.value })
+                        }
+                        placeholder="Enter"
+                        value={dealData.name}
+                      />
+                      Deal Status:
+                      <input
+                        onChange={(e) =>
+                          setDealData({ ...dealData, status: e.target.value })
+                        }
+                        placeholder="Enter"
+                        value={dealData.status}
+                      />
+                      File Size:
+                      <input
+                        onChange={(e) =>
+                          setDealData({
+                            ...dealData,
+                            file_size: parseInt(e.target.value),
+                          })
+                        }
+                        placeholder="File Size"
+                        value={dealData.file_size}
+                      />
+                      Cost-to-Date
+                      <input
+                        onChange={(e) =>
+                          setDealData({
+                            ...dealData,
+                            cost_to_date: parseInt(e.target.value),
+                          })
+                        }
+                        placeholder="Cost to Date"
+                        value={dealData.cost_to_date}
+                      />
+                      Provider ID:
+                      <input
+                        onChange={(e) =>
+                          setDealData({
+                            ...dealData,
+                            provider_id: e.target.value,
+                          })
+                        }
+                        placeholder="Enter"
+                        value={dealData.provider_id}
+                      />
+                    </div>
                   </ModalBody>
                   <ModalFooter>
                     <Button colorScheme="blue" mr={3} onClick={onCloseNewDeal}>
