@@ -95,7 +95,6 @@ export const createDeal = /* GraphQL */ `
       name
       status
       file_size
-
       cost_to_date
       provider_id
       manifest_file

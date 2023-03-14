@@ -48,7 +48,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import NoDeal from "./NoDeal";
-import { View, Authenticator } from "@aws-amplify/ui-react";
 import FullScreenLoader from "../common/FullScreenLoader";
 
 const customStyles = {
@@ -103,11 +102,12 @@ const Authed = () => {
       selector: (row: Deal) => row.status,
       sortable: true,
       cell: (row: Deal) => {
-        if (row.status == "Terminated") {
+        const status = row.status.toLowerCase();
+        if (status == "terminated") {
           return <Badge colorScheme="red">Terminated</Badge>;
-        } else if (row.status == "In Progress") {
+        } else if (row.status == "in progress") {
           return <Badge colorScheme="green">In Progress</Badge>;
-        } else if (row.status == "Upload Scheduled") {
+        } else if (row.status == "upload scheduled") {
           return <Badge colorScheme="blue">Upload Scheduled</Badge>;
         } else {
           return <Badge>Data Prep</Badge>;
