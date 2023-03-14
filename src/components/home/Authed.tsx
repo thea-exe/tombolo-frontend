@@ -63,14 +63,6 @@ const customStyles = {
       fontWeight: 700,
     },
   },
-  rows: {
-    style: {
-      backgroundColor: "white",
-      "&:hover": {
-        backgroundColor: "#f1f1f1",
-      },
-    },
-  },
 };
 
 type Deal = {
@@ -140,14 +132,14 @@ const Authed = () => {
       sortable: true,
       cell: (row: Deal) => "#" + row.provider_id,
     },
-    {
-      name: "",
-      selector: (row: Deal) => row.options,
-      sortable: true,
-      cell: (row: Deal) => (
-        <button onClick={() => deleteTodo(row)}>delete</button>
-      ),
-    },
+    // {
+    //   name: "",
+    //   selector: (row: Deal) => row.options,
+    //   sortable: true,
+    //   cell: (row: Deal) => (
+    //     <button onClick={() => deleteTodo(row)}>delete</button>
+    //   ),
+    // },
   ];
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
@@ -201,8 +193,23 @@ const Authed = () => {
       setDeals(newDealArray);
     } catch (error) {
       console.log("Error deleting Todo:", error);
+      // handle the error in a way that makes sense for your application
     }
   }
+
+  const ExpandedComponent = ({ data }) => (
+    <div className="flex flex-row text-white">
+      <button
+        className="w-full bg-[#16181B]"
+        onClick={() => console.log("access keys")}
+      >
+        Access Keys
+      </button>
+      <button className="w-full bg-[#CB3535] " onClick={() => deleteTodo(data)}>
+        Request Termination
+      </button>
+    </div>
+  );
 
   if (isLoading) {
     return <FullScreenLoader />;
@@ -522,6 +529,8 @@ const Authed = () => {
             columns={columns}
             data={deals}
             customStyles={customStyles}
+            expandableRows
+            expandableRowsComponent={ExpandedComponent}
           />
         </>
       ) : (
