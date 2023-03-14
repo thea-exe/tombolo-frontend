@@ -109,8 +109,10 @@ const Authed = () => {
           return <Badge colorScheme="green">In Progress</Badge>;
         } else if (row.status == "upload scheduled") {
           return <Badge colorScheme="blue">Upload Scheduled</Badge>;
+        } else if (row.status == "data prep") {
+          return <Badge colorScheme="blue">Data Prep</Badge>;
         } else {
-          return <Badge>Data Prep</Badge>;
+          return <Badge>Deal Requested</Badge>;
         }
       },
     },
@@ -201,11 +203,20 @@ const Authed = () => {
     <div className="flex flex-row text-white">
       <button
         className="w-full bg-[#16181B]"
-        onClick={() => console.log("access keys")}
+        onClick={() =>
+          (window.location.href =
+            "https://share.hsforms.com/1mvZF3awnRJC6ywL2aC8-tQe3p87")
+        }
       >
         Access Keys
       </button>
-      <button className="w-full bg-[#CB3535] " onClick={() => deleteTodo(data)}>
+      <button
+        className="w-full bg-[#CB3535] "
+        onClick={() =>
+          (window.location.href =
+            "https://share.hsforms.com/1mvZF3awnRJC6ywL2aC8-tQe3p87")
+        }
+      >
         Request Termination
       </button>
     </div>
@@ -250,78 +261,14 @@ const Authed = () => {
                 variant="solid"
                 ml={4}
                 w={60}
-                onClick={onOpenNewDeal}
+                onClick={() =>
+                  (window.location.href =
+                    "https://share.hsforms.com/1mvZF3awnRJC6ywL2aC8-tQe3p87")
+                }
               >
                 New Deal
               </Button>
-              <Modal isOpen={isOpenNewDeal} onClose={onCloseNewDeal}>
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader>New Deal</ModalHeader>
-                  <ModalCloseButton />
-                  <ModalBody>
-                    <div className="flex flex-col">
-                      Deal Name:
-                      <input
-                        onChange={(e) =>
-                          setDealData({ ...dealData, name: e.target.value })
-                        }
-                        placeholder="Enter"
-                        value={dealData.name}
-                      />
-                      Deal Status:
-                      <input
-                        onChange={(e) =>
-                          setDealData({ ...dealData, status: e.target.value })
-                        }
-                        placeholder="Enter"
-                        value={dealData.status}
-                      />
-                      File Size:
-                      <input
-                        onChange={(e) =>
-                          setDealData({
-                            ...dealData,
-                            file_size: parseInt(e.target.value),
-                          })
-                        }
-                        placeholder="File Size"
-                        value={dealData.file_size}
-                      />
-                      Cost-to-Date
-                      <input
-                        onChange={(e) =>
-                          setDealData({
-                            ...dealData,
-                            cost_to_date: parseInt(e.target.value),
-                          })
-                        }
-                        placeholder="Cost to Date"
-                        value={dealData.cost_to_date}
-                      />
-                      Provider ID:
-                      <input
-                        onChange={(e) =>
-                          setDealData({
-                            ...dealData,
-                            provider_id: e.target.value,
-                          })
-                        }
-                        placeholder="Enter"
-                        value={dealData.provider_id}
-                      />
-                    </div>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={onCloseNewDeal}>
-                      Close
-                    </Button>
-                    <Button onClick={createDeal} variant="ghost">
-                      Create Deal
-                    </Button>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
+
               <div className="flex gap-4 ml-auto">
                 <Button
                   leftIcon={<HamburgerIcon />}
