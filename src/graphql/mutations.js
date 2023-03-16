@@ -15,6 +15,7 @@ export const createUser = /* GraphQL */ `
           name
           status
           file_size
+          upload_date
           cost_to_date
           provider_id
           manifest_file
@@ -43,6 +44,7 @@ export const updateUser = /* GraphQL */ `
           name
           status
           file_size
+          upload_date
           cost_to_date
           provider_id
           manifest_file
@@ -71,6 +73,7 @@ export const deleteUser = /* GraphQL */ `
           name
           status
           file_size
+          upload_date
           cost_to_date
           provider_id
           manifest_file
@@ -95,6 +98,7 @@ export const createDeal = /* GraphQL */ `
       name
       status
       file_size
+      upload_date
       cost_to_date
       provider_id
       manifest_file
@@ -114,6 +118,7 @@ export const updateDeal = /* GraphQL */ `
       name
       status
       file_size
+      upload_date
       cost_to_date
       provider_id
       manifest_file
@@ -133,6 +138,7 @@ export const deleteDeal = /* GraphQL */ `
       name
       status
       file_size
+      upload_date
       cost_to_date
       provider_id
       manifest_file

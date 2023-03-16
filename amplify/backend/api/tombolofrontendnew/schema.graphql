@@ -1,16 +1,19 @@
 # This "input" configures a global authorization rule to enable public access to
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
-
-type Deal @model @auth(
-    rules: [
-      { allow: owner, ownerField: "owner" },
-    ]) {
+type User @model {
   id: ID!
-  owner: String
+  email: String!
+  deals: [Deal] @hasMany
+}
+
+type Deal @model {
+  id: ID!
   name: String!
   status: String!
   file_size: Int!
+  upload_date: AWSDateTime!
   cost_to_date: Int!
   provider_id: String!
   manifest_file: String!
