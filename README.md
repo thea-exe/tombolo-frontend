@@ -1,3 +1,14 @@
+# Amplify setup
+1. Configure amplify to use the correct profile
+   - `amplify configure`
+2. If you already have an amplify project
+   - `amplify pull`
+   - Connect the repo to an existing amplify project
+2. Otherwise, if no amplify project exists 
+   - `amplify init`
+   - Connect the repo to a new amplify project
+   - `amplify push` to push the amplify backend to the console
+
 # Webnative App Template
 
 [![Built by FISSION](https://img.shields.io/badge/⌘-Built_by_FISSION-purple.svg)](https://fission.codes) [![Built by FISSION](https://img.shields.io/badge/webnative-v0.34.1-purple.svg)](https://github.com/fission-suite/webnative) [![Discord](https://img.shields.io/discord/478735028319158273.svg)](https://discord.gg/zAQBDEq) [![Discourse](https://img.shields.io/discourse/https/talk.fission.codes/topics)](https://talk.fission.codes)

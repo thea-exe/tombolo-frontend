@@ -1,0 +1,17 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+
+
+type Deal @model @auth(
+    rules: [
+      { allow: owner, ownerField: "owner" },
+    ]) {
+  id: ID!
+  owner: String
+  name: String!
+  status: String!
+  file_size: Int!
+  cost_to_date: Int!
+  provider_id: String!
+  manifest_file: String!
+}
