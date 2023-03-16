@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { Amplify } from "aws-amplify";
-// import '@aws-amplify/ui-react/style.css';
-import awsExports from "./aws-exports";
-Amplify.configure(awsExports);
+import { withAuthenticator } from "@aws-amplify/ui-react";
 
 import init from "./lib/init";
 import { sessionStore } from "./stores";
@@ -34,18 +31,23 @@ const AppRenderer = () => {
     <>
       <SidebarNav>
         {/* <Header /> */}
-        <div className="">
+        <div>
           <Routes>
             <Route path="/backup" element={<Backup />} />
-            <Route path="/connect" element={<Connect />} />
+            {/* <Route path="/connect" element={<Connect />} /> */}
+            {/* /connect leads to /register when we create a new account */}
             <Route path="/dealportal" element={<DealPortalRoute />} />
-            <Route path="/delegate-account" element={<DelegateAccount />} />
-            <Route path="/link-device" element={<LinkDevice />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/recover" element={<Recover />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/settings" element={<Settings />} />
+            {/* <Route path="/delegate-account" element={<DelegateAccount />} /> */}
+            {/* not needed, creates backup device for webnative */}
+            {/* <Route path="/link-device" element={<LinkDevice />} /> */}
+            {/* not needed, connects other devices to same account */}
             <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            {/* <Route path="/recover" element={<Recover />} /> */}
+            {/* not needed, recovery path to recover account */}
+            {/* <Route path="/about" element={<About />} /> */}
+            {/* change this to Tombolo specific */}
+            <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
@@ -76,4 +78,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default withAuthenticator(App);

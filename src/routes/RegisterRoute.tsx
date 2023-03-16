@@ -1,14 +1,14 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from "recoil";
 
-import { sessionStore } from '../stores';
-import Register from '../components/auth/register/Register'
-import Welcome from '../components/auth/register/Welcome'
+import { sessionStore } from "../stores";
+import Register from "../components/auth/register/Register";
+import Welcome from "../components/auth/register/Welcome";
 
 const RegisterRoute = () => {
   const session = useRecoilValue(sessionStore);
 
   if (session.session) {
-   return <Welcome />;
+    return <Welcome />;
   } else {
     return <Register />;
   }
