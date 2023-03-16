@@ -1,7 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import App from "../../../App";
 
 import { sessionStore } from "../../../stores";
 import {
@@ -14,10 +13,10 @@ import FilesystemActivity from "../../common/FilesystemActivity";
 import TomboloBackground from "../../images/TomboloBackground";
 import BrandLogo from "../../icons/BrandLogo";
 import BrandWordmark from "../../icons/BrandWordmark";
-import { Authenticator, View } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
+import { Authenticator, useAuthenticator, View } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
-import { useNavigate, useLocation } from "react-router";
+import { useNavigate, useLocation } from 'react-router';
 
 const Register = () => {
   // const {
@@ -99,13 +98,15 @@ const Register = () => {
         {/* Registration Form */}
         <div className="text-2xl font-medium align-left">Sign up</div>
         <View>
-          <Authenticator loginMechanisms={["email"]}>
-            {({ user, signOut }) => (
-              <div>
+          <Authenticator
+          loginMechanisms={['email']}
+        >
+          {({ user, signOut }) => (
+            <div>
                 <h1>Hello, {user.username}</h1>
                 <button onClick={signOut}>Sign Out</button>
-              </div>
-            )}
+            </div>
+          )}
           </Authenticator>
         </View>
         {/*<form*/}

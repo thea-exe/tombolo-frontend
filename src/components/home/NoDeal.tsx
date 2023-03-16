@@ -10,10 +10,7 @@ const NoDeal = () => {
       <div className="text-xl font-medium mt-auto mb-auto">
         You don&apos;t have any storage deals yet.
         <p className="break-after-colum"></p>
-        <Link
-          className="text-[#5299E0] underline underline-offset-4"
-          to={"https://share.hsforms.com/1mvZF3awnRJC6ywL2aC8-tQe3p87"}
-        >
+        <Link to={""} className="text-[#5299E0] underline underline-offset-4">
           Request
         </Link>{" "}
         your first deal or learn more

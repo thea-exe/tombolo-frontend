@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { Link } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 
 import { sessionStore } from "../../stores";
-import { appName } from "../../lib/app-info";
+import { appName } from '../../lib/app-info'
 import Alert from "../../components/icons/Alert";
 import Connect from "../../components/icons/Connect";
 
 const Public = () => {
-  const session = useRecoilValue(sessionStore);
+  const session = useRecoilValue(sessionStore)
 
   return (
     <div className="min-h-[calc(100vh-96px)] flex flex-col items-start justify-center max-w-[700px] m-auto gap-6 pb-5 text-sm">

@@ -19,26 +19,5 @@
         "tombolofrontendnew6da5dc3d": {}
       }
     }
-  },
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-tombolofrontendnew-dev-152544-authRole",
-      "UnauthRoleArn": "arn:aws:iam::288251279596:role/amplify-tombolofrontendnew-dev-152544-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::288251279596:role/amplify-tombolofrontendnew-dev-152544-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-tombolofrontendnew-dev-152544-deployment",
-      "UnauthRoleName": "amplify-tombolofrontendnew-dev-152544-unauthRole",
-      "StackName": "amplify-tombolofrontendnew-dev-152544",
-      "StackId": "arn:aws:cloudformation:us-east-2:288251279596:stack/amplify-tombolofrontendnew-dev-152544/695eefd0-b938-11ed-ac39-0639ce6366a8",
-      "AmplifyAppId": "d1dblovfvnakpf"
-    },
-    "categories": {
-      "auth": {
-        "tombolofrontendnew6da5dc3d": {}
-      },
-      "api": {
-        "tombolofrontendnew": {}
-      }
-    }
   }
 }
