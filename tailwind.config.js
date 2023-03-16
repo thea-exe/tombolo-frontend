@@ -115,6 +115,10 @@ module.exports = {
           "100%": { transform: "translateX(-100vw)" },
         },
       },
+      screens: {
+        'xs': '360px',
+       
+      },
       width: {
         narrowModal: "327px",
         wideModal: "471px",
